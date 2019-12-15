@@ -1,5 +1,4 @@
 from flask import Flask, render_template, url_for, redirect, request, Blueprint, session
-import plotly.graph_objects as go
 import requests
 from bs4 import BeautifulSoup
 from flask_login import login_user, current_user, logout_user, login_required
