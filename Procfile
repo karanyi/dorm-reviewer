@@ -1,1 +1,1 @@
-web: gunicorn -w 4 my_project.wsgi:app
+web: gunicorn "run:create_app()"
