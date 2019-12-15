@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="navbar">
+        <div id="site-title-container">
+            <a style="flex-grow: 1" id="site-title" href="/home">Dorm-Reviewer</a>
+        </div>
+
+        <div id="site-pages-container">
+            <a href="/profile" class="nav-selector">Profile</a>
+            <a href="/logout" class="nav-selector">Logout</a>
+        </div>
+    </div>
+
+    <div class="ratings-card">
+        <h1>{{dorm}} Reviews</h1>
+
+        <div class="review-rating-wrapper">
+            <div class="average-rating-container">
+                <span>Amenities</span>
+                <span>{{amenities}}</span>
+            </div>
+            <div class="average-rating-container">
+                <span>Social</span>
+                <span>{{social}}</span>
+            </div>
+            <div class="average-rating-container">
+                <span>Location</span>
+                <span>{{location}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="review-container">
+        {% for review in reviews %}
+        <div class="review">
+            <div class="review-info-container">
+                <span class="review-author">{{review.author.username}}</span>
+                <div class="review-rating-wrapper">
+                    <div class="review-rating-container">
+                        <span>Social</span>
+                        <span>{{review.social}}</span>
+                    </div>
+                    <div class="review-rating-container">
+                        <span>Amenities</span>
+                        <span>{{review.amenities}}</span>
+                    </div>
+                    <div class="review-rating-container">
+                        <span>Location</span>
+                        <span>{{review.location}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="comment-container">
+                {{review.comment}}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

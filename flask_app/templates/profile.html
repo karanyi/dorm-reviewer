@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="navbar">
+        <div id="site-title-container">
+            <a style="flex-grow: 1" id="site-title" href="/home">Dorm-Reviewer</a>
+        </div>
+
+        <div id="site-pages-container">
+            <a href="/profile" class="nav-selector">Profile</a>
+            <a href="/logout" class="nav-selector">Logout</a>
+        </div>
+    </div>
+
+    <div class="update-card">
+        <div>
+            <h2>{{ current_user.username }}</h2>
+        </div>
+        <form action="" method="post">
+            {{ form.csrf_token }}
+            <div class="update-container">
+                {{ form.username.label }}
+                {{ form.username }}
+    
+                {% if form.username.errors %}
+                    <div>
+                        {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="update-container">
+                {{ form.submit }}
+            </div>
+            {#
+                Username, Password, and Confirm Password fields go here, from the UpdateForm, plus Bootstrap
+                wk9 has examples of how to use Bootstrap.
+                Plus, csrf token
+            #}
+        </form>
+    </div>
+
+   
+{% endblock %}

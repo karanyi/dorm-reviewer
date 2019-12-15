@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1 id="main-title">Dorm Reviewer</h1>
+        <div id="register-container">
+            <div class="form">
+                <form action="" method="post">
+                        {{ form.csrf_token }}
+                        <div>
+                            {{ form.username.label(class="form-control-label green-text") }}
+                            {{ form.username(class="form-control form-control-md") }}
+                            {% if form.username.errors %}
+                                <div>
+                                    {% for error in form.username.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            {{ form.password.label(class="form-control-label green-text") }}
+                            {{ form.password(class="form-control form-control-md") }}
+                            {% if form.password.errors %}
+                                <div>
+                                    {% for error in form.password.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            {{ form.confirm_password.label(class="form-control-label green-text") }}
+                            {{ form.confirm_password(class="form-control form-control-md") }}
+                            {% if form.confirm_password.errors %}
+                                <div>
+                                    {% for error in form.confirm_password.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            {{ form.submit(class="button") }}
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

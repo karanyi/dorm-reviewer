@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="navbar">
+        <div id="site-title-container">
+            <a style="flex-grow: 1" id="site-title" href="/home">Dorm-Reviewer</a>
+        </div>
+
+        <div id="site-pages-container">
+            <a href="/profile" class="nav-selector">Profile</a>
+            <a href="/logout" class="nav-selector">Logout</a>
+        </div>
+    </div>
+
+    <h1>Rate {{dorm}}</h1>
+
+    <div class="form">
+        <form action="" method="post">
+            {{ form.csrf_token }}
+            <div>
+                {{ form.amenities.label() }}
+                {{ form.amenities(class="radio-container") }}
+            </div>
+            <div>
+                {{ form.location.label() }}
+                {{ form.location(class="radio-container") }}
+            </div>
+            <div>
+                {{ form.social.label() }}
+                {{ form.social(class="radio-container") }}
+            </div>
+            <div>
+                {{ form.comments.label(class="form-control-label green-text") }}
+                {{ form.comments(class="form-control form-control-md") }}
+            </div>
+            <div>
+                {{ form.submit(class="button") }}
+            </div>
+        </form>
+    </div>
+{% endblock %}

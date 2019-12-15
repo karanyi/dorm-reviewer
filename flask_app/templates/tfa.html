@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1 id="main-title">Dorm Reviewer</h1>
+    <div>
+        <h2>Two-Factor Auth Enrollment</h2>
+    </div>
+    <div class="tfa">
+        This website requires mandatory 2FA enrollment. 
+    </div>
+    <!-- Registration Form: -->
+    <p class="tfa">
+        Use a authenticator app to enroll with us! You will need to use this app to login in the future.
+    </p>
+
+    <div class="qr-container">
+        <img src={{ url_for('users.qr_code') }} alt="QR Code for 2FA">
+    </div>
+
+    <div class="tfa">
+        When you're done, you can go to the <a href={{ url_for('users.login') }}>Login page</a>!
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="navbar">
+        <div id="site-title-container">
+            <a style="flex-grow: 1" id="site-title" href="/home">Dorm-Reviewer</a>
+        </div>
+
+        <div id="site-pages-container">
+            <a href="/profile" class="nav-selector">Profile</a>
+            <a href="/logout" class="nav-selector">Logout</a>
+        </div>
+    </div>
+
+    <div id="card-wrapper">
+        {% for dorm in dorms %}
+            <div class="card">
+                <div class="container">
+                    <h1 id="card-header" style="text-align: center">{{dorm[0]}}</h1>
+                    <h2 style="text-align: center"> {{dorm[1]}} </h2>
+                    <div id="card-form">
+                        <form class="button-form" action="/review/{{dorm[0]}}">
+                            <button class="material-button">Leave a review</button>
+                        </form>
+                        <form class="button-form" action="/details/{{dorm[0]}}">
+                            <button class="material-button">Details</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

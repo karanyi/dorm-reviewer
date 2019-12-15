@@ -1,108 +1,52 @@
-import requests
+from flask_app import db, login_manager
+from flask_login import UserMixin
 
-class PokeClient(object):
-    def __init__(self):
-        self.sess = requests.Session()
-        self.sess.headers.update({'User Agent': 'CMSC388J Fall 2019 Project 2'})
-        self.base_url = 'https://pokeapi.co/api/v2/'
+import pyotp
 
-    def get_pokemon_list(self):
-        """
-        Returns a list of pokemon names
-        """
-        pokemon = []
-        resp = self.sess.get(self.base_url + 'pokemon?limit=964')
-        for poke_dict in resp.json()['results']:
-            pokemon.append(poke_dict['name'])
-        return pokemon
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(30), unique=True, nullable=False)
+    password = db.Column(db.String(60), nullable=False)
+
+    reviews = db.relationship("Review", backref="author", lazy=True)
+
+    otp_secret = db.Column(db.String(16), nullable=False)
+
+    def __repr__(self):
+        return "User('%s')" % (self.username)
     
-    def get_pokemon_info(self, pokemon):
-        """
-        Arguments:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
-        pokemon -- a lowercase string identifying the pokemon
+        # self.otp_secret = base64.b32encode(os.urandom(10)).decode()
+        self.otp_secret = pyotp.random_base32()
+    
+    def get_auth_uri(self):
+        servicer = 'CMSC388J-2FA'
 
-        Returns a dict with info about the Pokemon with the 
-        following keys and the type of value they map to:
-        
-        name      -> string
-        height    -> int
-        weight    -> int
-        base_exp  -> int
-        moves     -> list of strings
-        abilities -> list of strings
-        """
-        if type(pokemon) != str:
-            raise TypeError('The pokemon argument must be a string')
+        return ('otpauth://totp/{0}:{1}?secret={2}&issuer={0}'.format(
+            servicer, self.username, self.otp_secret
+        ))
+    
+    def verify_totp(self, token):
+        totp_client = pyotp.TOTP(self.otp_secret)
+        return totp_client.verify(token)
 
-        resp = self.sess.get(self.base_url + ('pokemon/%s' % pokemon))
+class Review(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    dorm = db.Column(db.String, nullable=False)
+    amenities = db.Column(db.Integer, nullable=False)
+    location = db.Column(db.Integer, nullable=False)
+    social = db.Column(db.Integer, nullable=False)
+    comment = db.Column(db.Text, nullable=False)
 
-        if resp.status_code != 200:
-            raise ValueError('The pokemon string you entered must be lowercase'
-                             'and valid')
-        
-        resp = resp.json()
-        
-        result = {}
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 
-        result['name'] = resp['name']
-        result['height'] = resp['height']
-        result['weight'] = resp['weight']
-        result['base_exp'] = resp['base_experience']
-
-        moves = []
-        for move_dict in resp['moves']:
-            moves.append(move_dict['move']['name'])
-        
-        result['moves'] = moves
-
-        abilities = []
-        for ability_dict in resp['abilities']:
-            abilities.append(ability_dict['ability']['name'])
-        
-        result['abilities'] = abilities
-
-        return result
-
-    def get_pokemon_with_ability(self, ability):
-        """
-        Arguments:
-
-        ability -- a lowercase string identifying an ability
-
-        Returns a list of strings identifying pokemon that have the specified ability
-        """
-        if type(ability) != str:
-            raise TypeError('The pokemon argument must be a string')
-
-        resp = self.sess.get(self.base_url + ('ability/%s' % ability))
-
-        if resp.status_code != 200:
-            raise ValueError('The ability string you entered must be lowercase'
-                             'and valid')
-
-        pokemon = []
-        for poke_dict in resp.json()['pokemon']:
-            pokemon.append(poke_dict['pokemon']['name'])
-        
-        return pokemon
-
-# -- Example usage -- #
-# if __name__=='__main__':
-#     client = PokeClient()
-#     l = client.get_pokemon_list()
-#     print(len(l))
-#     print(l[1])
-
-#     i = client.get_pokemon_info(l[1])
-#     print(i.keys())
-#     print(i['name'])
-#     print(i['base_exp'])
-#     print(i['weight'])
-#     print(i['height'])
-#     print(i['abilities'])
-#     print(len(i['moves']))
-
-
-#     p = client.get_pokemon_with_ability('tinted-lens')
-#     print(p)
+    def __repr__(self):
+        return 'Review created by "%s"' % (
+            self.author.username,
+        )

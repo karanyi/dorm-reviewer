@@ -1,0 +1,254 @@
+html, body {
+	margin: 0vh;
+}
+
+h1, h2, h3, span {
+	text-align: center;
+}
+
+label {
+	text-align: left;
+	font-size: 20px;
+}
+
+#navbar {
+	font-family: 'Lato', sans-serif;
+
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	
+	display: flex;
+	width: 100%;
+	height: 62px;
+	flex: 0 0 auto;
+	background-color: rgb(227, 91, 61);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#site-title-container {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	font-size: 24px;
+	flex-grow: 1;
+}
+
+#site-title {
+	padding-left: 10px;
+	color: white;
+    text-decoration: none;
+}
+
+#site-pages-container {
+	display: flex;
+	flex-grow: 1; 
+	justify-content: flex-end;
+}
+
+.nav-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    color: white;
+    text-decoration: none;
+}
+
+#card-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.card {
+	/* Add shadows to create the "card" effect */
+	-webkit-box-shadow: 1px 1px 18px -2px rgba(0,0,0,0.7);
+	-moz-box-shadow: 1px 1px 18px -2px rgba(0,0,0,0.7);
+	box-shadow: 1px 1px 18px -2px rgba(0,0,0,0.7);
+	transition: 0.3s;
+	margin: 28px;
+	background-color: white;
+}
+
+  .material-button {
+    padding:0.6em 2em;
+	border-radius: 8px;
+	color:#fff;
+	background-color:#1976d2;
+	font-size:1.1em;
+	border:0;
+	cursor:pointer;
+	margin:1em;
+}
+
+.material-button-main {
+	padding:0.6em 2em;
+	border-radius: 8px;
+	color:#fff;
+	background-color:rgb(227, 91, 61);
+	font-size:1.1em;
+	border:0;
+	cursor:pointer;
+	margin:1em;
+}
+
+#card-form {
+	border-top: 2px solid gray;
+	margin: 0;
+	display: flex;
+}
+
+#login-register-container {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+#main-title {
+	margin: 70px;
+	text-align: center;
+	font-size: 40px;
+}
+
+.form {
+	position: relative;
+	background: #FFFFFF;
+	max-width: 360px;
+	margin: 0 auto 100px;
+	padding: 45px;
+	text-align: center;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form input {
+	font-family: "Roboto", sans-serif;
+	outline: 0;
+	background: #f2f2f2;
+	width: 100%;
+	border: 0;
+	margin: 0 0 15px;
+	padding: 15px;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+
+.form .button {
+	font-family: "Roboto", sans-serif;
+	text-transform: uppercase;
+	outline: 0;
+	background: rgb(227, 91, 61);
+	width: 100%;
+	border: 0;
+	padding: 15px;
+	color: #FFFFFF;
+	font-size: 14px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}
+
+.form button:hover,.form button:active,.form button:focus {
+	background: rgb(194, 77, 50);
+}
+.form .message {
+	margin: 15px 0 0;
+	color: #b3b3b3;
+	font-size: 12px;
+}
+.form .message a {
+	color: #4CAF50;
+	text-decoration: none;
+}
+.form .register-form {
+	display: none;
+}
+
+.button-form {
+	margin: 0;
+}
+
+.radio-container {
+	display: flex;
+	list-style: none;
+	padding: 0;
+	justify-content: center;
+}
+
+li {
+	margin: 10px;
+}
+
+.review {
+	display: flex;
+	justify-content: flex-start;
+	margin: 20px;
+	-webkit-box-shadow: 1px 1px 18px -2px rgba(0,0,0,0.7);
+	-moz-box-shadow: 1px 1px 18px -2px rgba(0,0,0,0.7);
+	box-shadow: 1px 1px 18px -2px rgba(0,0,0,0.7);
+	background-color: white;
+}
+
+.review-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.review-rating-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 10px;
+	font-size: 24px;
+}
+
+.average-rating-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 40px;
+	font-size: 35px;
+}
+
+.review-rating-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.review-author {
+	font-size: 30px;
+	margin: 10px;
+}
+
+.comment-container {
+	margin-left: 50px;
+	font-size: 25px;
+}
+
+.main-button-container {
+	display: flex;
+	justify-content: center;
+}
+
+body {
+	background-color: rgb(252, 208, 190);
+}
+
+.tfa, .qr-container {
+	display: flex;
+	justify-content: center;
+}
+
+.update-card {
+	display: flex;
+	background-color: white;
+	flex-direction: column;
+	margin: 50px;
+	-webkit-box-shadow: 1px 1px 18px -2px rgba(0,0,0,0.7);
+	-moz-box-shadow: 1px 1px 18px -2px rgba(0,0,0,0.7);
+	box-shadow: 1px 1px 18px -2px rgba(0,0,0,0.7);
+}
+
+.update-container {
+	display: flex;
+	justify-content: center;
+}
