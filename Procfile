@@ -1,1 +1,1 @@
-web: gunicorn "run:create_app()"
+gunicorn -w 4 flask_app.wsgi:app
