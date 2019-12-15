@@ -1,1 +1,1 @@
-web: gunicorn "run:create_app()" --log-level debug
+web: gunicorn "run:create_app()" --preload --workers 1
