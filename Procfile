@@ -1,3 +1,1 @@
-web gunicorn manage:app
-web: gunicorn app:app
-web: gunicorn run:app 
+web: gunicorn "run:create_app()"
