@@ -252,3 +252,13 @@ body {
 	display: flex;
 	justify-content: center;
 }
+
+.description {
+	padding: 20px;
+	margin: 80px;
+	font-size: 30px;
+}
+
+.comments-form {
+	font-size: 12px;
+}

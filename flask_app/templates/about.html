@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="navbar">
+        <div id="site-title-container">
+            <a style="flex-grow: 1" id="site-title" href="/home">Dorm-Reviewer</a>
+        </div>
+
+        <div id="site-pages-container">
+            <a href="/about" class="nav-selector">About</a>
+            <a href="/profile" class="nav-selector">Profile</a>
+            <a href="/logout" class="nav-selector">Logout</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <p class="description">
+            This project is a crowdsourced review web app for UMD dorms. Users can leave
+            reviews for any dorm on campus and rate them but their amenities, social atmosphere,
+            and location. The main page shows each dorm with its average rating of the 3 across all
+            of the reviews.
+        </p>
+    </div>
+{% endblock %}

@@ -64,7 +64,6 @@ def home():
             average = round(count / (len(list(reviews)) * 3), 2)
         lst.append((dorm, average))
 
-    print(lst)
     return render_template('home.html', dorms=lst)
 
 @main.route('/details/<dorm>')
@@ -90,3 +89,7 @@ def details(dorm):
 
     return render_template('details.html', dorm=dorm, social=averageSocial, 
         location=averageLocation, amenities=averageAmenities, reviews=reviews)
+
+@main.route('/about')
+def about():
+    return render_template('about.html')
